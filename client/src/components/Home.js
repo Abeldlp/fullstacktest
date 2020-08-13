@@ -2,14 +2,14 @@ import React from "react";
 
 export default function Home() {
   return (
-    <div>
-      <h1>Fullstack test questions</h1>
+    <div style={{ width: "70%", margin: "auto", textAlign: "left" }}>
+      <h1 style={{ textAlign: "center" }}>Fullstack test questions</h1>
       <p>
         Below you can find the questions asked on this test. Each question has a
         link in the navbar.
       </p>
       <p>Read each question and to the correspondat page to see the answer.</p>
-      <h2>Questions</h2>
+      <h2 style={{ textAlign: "center" }}>Questions</h2>
       <hr />
       <h3>Question 1</h3>
       <p>
@@ -62,6 +62,26 @@ export default function Home() {
       <br />
       <h2>SQL part</h2>
       <hr />
+      <h3>Question 1</h3>
+      <p>
+        Use these sentences to draw a schema of a database you would create to
+        store these information.
+      </p>
+      <ul>
+        <li>You are working in a casino.</li>
+        <li>A casino has games.</li>
+        <li>Each game has a unique type</li>
+        <li>
+          Each game has one or more countries where players are allowed to bet
+          from
+        </li>
+        <li>A player mey or may not have a favorite game</li>
+      </ul>
+      <h3>Question 2</h3>
+      <p>
+        Write based on above, a SQL query to get all players that have games of
+        type “SLOT” as their favorite games.
+      </p>
     </div>
   );
 }

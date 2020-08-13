@@ -15,7 +15,9 @@ export default class Question2 extends Component {
     this.handleSelection = this.handleSelection.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   /*
+  IF YOU want to fetch data and show it before users interaction
   async componentDidMount() {
     const data = await fetch("https://restcountries.eu/rest/v2/all");
     const countries = await data.json();
