@@ -7,6 +7,7 @@ export default class Question1 extends Component {
 
     this.state = {
       countryName: "",
+      shown: false,
     };
 
     this.handleCountryName = this.handleCountryName.bind(this);
@@ -32,10 +33,11 @@ export default class Question1 extends Component {
       //Inserting just one from the fetched list
       this.setState({
         countryName: dataJson,
+        shown: true,
       });
     } catch (error) {
       this.setState({
-        countryName: "no data",
+        countryName: "No country with that name",
       });
     }
 
@@ -61,7 +63,7 @@ export default class Question1 extends Component {
         >
           <input
             type="text"
-            placeholder="Name of the country"
+            placeholder="Search for specific country "
             onChange={this.handleCountryName}
             style={styles.input_bar}
           />
@@ -71,14 +73,35 @@ export default class Question1 extends Component {
             onClick={this.handleSubmit}
           />
         </form>
-        <h3>Country: {this.state.countryName.name}</h3>
-        <img src={this.state.countryName.flag} alt="flag" />
-        <p>Capital: {this.state.countryName.capital}</p>
-        <p>Region: {this.state.countryName.region}</p>
-        <p>Population: {this.state.countryName.population}</p>
-        <p>Subregion: {this.state.countryName.subregion}</p>
-        <p>Native name: {this.state.countryName.nativeName}</p>
-        <p>Numeric codes: {this.state.countryName.callingCodes}</p>
+        {this.state.shown && (
+          <div>
+            <h3>Country: {this.state.countryName.name}</h3>
+            <img
+              src={this.state.countryName.flag}
+              style={styles.flag}
+              alt="flag"
+            />
+            <p>
+              <strong>Capital:</strong> {this.state.countryName.capital}
+            </p>
+            <p>
+              <strong>Regio:</strong> {this.state.countryName.region}
+            </p>
+            <p>
+              <strong>Population:</strong> {this.state.countryName.population}
+            </p>
+            <p>
+              <strong>Subregion:</strong> {this.state.countryName.subregion}
+            </p>
+            <p>
+              <strong>Native name:</strong> {this.state.countryName.nativeName}
+            </p>
+            <p>
+              <strong>Calling code:</strong>
+              {this.state.countryName.callingCodes}
+            </p>
+          </div>
+        )}
       </div>
     );
   }
@@ -99,5 +122,8 @@ const styles = {
     padding: 5,
     borderLeft: "1.5px solid dodgerblue",
   },
-  //Styles for the country
+  flag: {
+    height: "200px",
+    boxShadow: " 0px 6px 22px -8px rgba(82,82,82,0.9)",
+  },
 };
