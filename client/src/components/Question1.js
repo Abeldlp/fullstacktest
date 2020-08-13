@@ -1,0 +1,103 @@
+import React, { Component } from "react";
+import search_button from "../images/icon-search.png";
+
+export default class Question1 extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      countryName: "",
+    };
+
+    this.handleCountryName = this.handleCountryName.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleCountryName(e) {
+    this.setState({
+      countryName: e.target.value,
+    });
+  }
+
+  async handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const dataFetched = await fetch(
+        `http://localhost:8000/api/countries/${this.state.countryName}`
+      );
+
+      const dataJson = await dataFetched.json();
+
+      //Inserting just one from the fetched list
+      this.setState({
+        countryName: dataJson,
+      });
+    } catch (error) {
+      this.setState({
+        countryName: "no data",
+      });
+    }
+
+    console.log(this.state.countryName);
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Question 1</h1>
+        <form
+          onSubmit={this.handleSubmit}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-around",
+            width: "300px",
+            margin: "auto",
+            border: "1.5px solid dodgerblue",
+            borderRadius: "20px",
+            overflow: "hidden",
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Name of the country"
+            onChange={this.handleCountryName}
+            style={styles.input_bar}
+          />
+          <img
+            src={search_button}
+            style={styles.search_button}
+            onClick={this.handleSubmit}
+          />
+        </form>
+        <h3>Country: {this.state.countryName.name}</h3>
+        <img src={this.state.countryName.flag} alt="flag" />
+        <p>Capital: {this.state.countryName.capital}</p>
+        <p>Region: {this.state.countryName.region}</p>
+        <p>Population: {this.state.countryName.population}</p>
+        <p>Subregion: {this.state.countryName.subregion}</p>
+        <p>Native name: {this.state.countryName.nativeName}</p>
+        <p>Numeric codes: {this.state.countryName.callingCodes}</p>
+      </div>
+    );
+  }
+}
+
+const styles = {
+  input_bar: {
+    outline: "none",
+    padding: 10,
+    border: "none",
+    width: "90%",
+    fontFamily: "Poppins",
+  },
+  search_button: {
+    height: "30px",
+    width: "30px",
+    cursor: "pointer",
+    padding: 5,
+    borderLeft: "1.5px solid dodgerblue",
+  },
+  //Styles for the country
+};
