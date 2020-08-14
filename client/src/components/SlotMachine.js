@@ -153,7 +153,7 @@ export default class SlotMachine extends Component {
     return newScore;
   }
 
-  //CHECKS FIRST ROW HORIZONTALLY
+  //CHECKS SECOND ROW HORIZONTALLY
   checkCombination2() {
     let newScore = 0;
     let threeCherries = false;
@@ -331,7 +331,7 @@ export default class SlotMachine extends Component {
     return newScore;
   }
 
-  //CHECKS THE WHOLE RESLUT OF THE SPIN
+  //CHECKS THE WHOLE RESULT OF THE SPIN
   checkResults() {
     if (this.state.checkable) {
       let resultFirstRow = this.checkCombination1();
@@ -386,36 +386,6 @@ export default class SlotMachine extends Component {
         slot22: Math.floor(Math.random() * 4),
         slot23: Math.floor(Math.random() * 4),
         slot24: Math.floor(Math.random() * 4),
-
-        //HIDING SCORES FIRST ROW
-        cherryFirstRow: false,
-        appleFirstRow: false,
-        bananaFirstRow: false,
-        lemonFirstRow: false,
-        cherryFirstRow2: false,
-        appleFirstRow2: false,
-        bananaFirstRow2: false,
-        lemonFirstRow2: false,
-
-        //HIDING SCORES SECOND ROW
-        cherrySecondRow: false,
-        appleSecondRow: false,
-        bananaSecondRow: false,
-        lemonSecondRow: false,
-        cherrySecondRow2: false,
-        appleSecondRow2: false,
-        bananaSecondRow2: false,
-        lemonSecondRow2: false,
-
-        //HIDING SCORES THIRD ROW
-        cherryThirdRow: false,
-        appleThirdRow: false,
-        bananaThirdRow: false,
-        lemonThirdRow: false,
-        cherryThirdRow2: false,
-        appleThirdRow2: false,
-        bananaThirdRow2: false,
-        lemonThirdRow2: false,
       });
     }
 
