@@ -49,6 +49,24 @@ export default class Question3 extends Component {
     return (
       <div>
         <h1>Question 3</h1>
+        <div
+          style={{
+            width: "50%",
+            textAlign: "left",
+            margin: "auto",
+            minWidth: "400px",
+            paddingBottom: "20px",
+          }}
+        >
+          <p>
+            On the left you can find all the data fetched from the url provided
+            and displayed as buttons so the user can click and go to a more
+            detailed page. On the right you will find all the countries where
+            the name is equal or matches partially with the input filed.
+          </p>
+
+          <p>NOTE: This data is being fetched from the frontend</p>
+        </div>
         <form
           onSubmit={this.handleSubmit}
           style={{

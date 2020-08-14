@@ -55,6 +55,33 @@ export default class Question2 extends Component {
     return (
       <div>
         <h1>Question 2</h1>
+        <div
+          style={{
+            width: "50%",
+            textAlign: "left",
+            margin: "auto",
+            minWidth: "400px",
+            paddingBottom: "20px",
+          }}
+        >
+          <p>
+            <strong>NOTE:</strong> Type the name of a country (or part of it)
+            and open a space. The input field is set to split each word
+            separated with a SPACE and insert wach word in an array.
+          </p>
+          <p>
+            If you open more than one space, or insert it on a different
+            pattern, the search will not work
+          </p>
+          <p>
+            - <strong>Example:</strong>Japan USA Jamai Spa
+          </p>
+          <span>
+            The search above would display a button for Japan, USA, Jamaica and
+            Spain
+          </span>
+          <p>NOTE: This data is being fetched from the backend</p>
+        </div>
         <form
           onSubmit={this.handleSubmit}
           style={{

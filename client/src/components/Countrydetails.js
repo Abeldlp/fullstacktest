@@ -23,27 +23,42 @@ export default class Countrydetails extends Component {
   render() {
     return (
       <div>
-        <h3>Country: {this.state.countryName.name}</h3>
-        <img src={this.state.countryName.flag} style={styles.flag} alt="flag" />
-        <p>
-          <strong>Capital:</strong> {this.state.countryName.capital}
-        </p>
-        <p>
-          <strong>Regio:</strong> {this.state.countryName.region}
-        </p>
-        <p>
-          <strong>Population:</strong> {this.state.countryName.population}
-        </p>
-        <p>
-          <strong>Subregion:</strong> {this.state.countryName.subregion}
-        </p>
-        <p>
-          <strong>Native name:</strong> {this.state.countryName.nativeName}
-        </p>
-        <p>
-          <strong>Calling code:</strong>
-          {this.state.countryName.callingCodes}
-        </p>
+        <h1>Country Details</h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingTop: "20px",
+          }}
+        >
+          <div style={{ textAlign: "left", paddingRight: "20px" }}>
+            <h3>Country: {this.state.countryName.name}</h3>
+            <p>
+              <strong>Capital:</strong> {this.state.countryName.capital}
+            </p>
+            <p>
+              <strong>Regio:</strong> {this.state.countryName.region}
+            </p>
+            <p>
+              <strong>Population:</strong> {this.state.countryName.population}
+            </p>
+            <p>
+              <strong>Subregion:</strong> {this.state.countryName.subregion}
+            </p>
+            <p>
+              <strong>Native name:</strong> {this.state.countryName.nativeName}
+            </p>
+            <p>
+              <strong>Calling code: </strong>
+              {this.state.countryName.callingCodes}
+            </p>
+          </div>
+          <img
+            src={this.state.countryName.flag}
+            style={styles.flag}
+            alt="flag"
+          />
+        </div>
       </div>
     );
   }
