@@ -48,29 +48,25 @@ export default class SlotMachine extends Component {
       //SETS IMAGES
       images: [image0, image1, image2, image3],
       coins: 20,
+      checkable: "",
 
-      //FIRST ROW 3 COMBINATIONS
-      cherryFirstRow: false,
-      appleFirstRow: false,
-      bananaFirstRow: false,
-      lemonFirstRow: false,
-
-      //FIRST ROW 2 COMBINATIONS
-      cherryFirstRow2: false,
-      appleFirstRow2: false,
-      bananaFirstRow2: false,
-      lemonFirstRow2: false,
-      checkable: true,
+      //RESULTS OF EACH ROW
+      result1: "",
+      result2: "",
+      result3: "",
     };
 
     this.spinSlot = this.spinSlot.bind(this);
     this.insertNumbers = this.insertNumbers.bind(this);
     this.checkCombination1 = this.checkCombination1.bind(this);
+    this.checkCombination2 = this.checkCombination2.bind(this);
+    this.checkCombination3 = this.checkCombination3.bind(this);
+    this.checkResults = this.checkResults.bind(this);
   }
 
   //CHECKS FIRST ROW HORIZONTALLY
   checkCombination1() {
-    let newScore = this.state.coins;
+    let newScore = 0;
     let threeCherries = false;
     let threeApples = false;
     let threeBananase = false;
@@ -84,9 +80,7 @@ export default class SlotMachine extends Component {
           this.state.reel1[i + 1] === 0
         ) {
           this.setState({
-            cherryFirstRow: true,
             checkable: false,
-            //coins: this.state.coins + 50,
           });
           threeCherries = true;
           newScore += 50;
@@ -97,9 +91,7 @@ export default class SlotMachine extends Component {
           !threeCherries
         ) {
           this.setState({
-            cherryFirstRow2: true,
             checkable: false,
-            //coins: this.state.coins + 40,
           });
           newScore += 40;
         } else if (
@@ -109,9 +101,7 @@ export default class SlotMachine extends Component {
           this.state.reel1[i + 1] === 1
         ) {
           this.setState({
-            appleFirstRow: true,
             checkable: false,
-            //coins: this.state.coins + 20,
           });
           threeApples = true;
           newScore += 20;
@@ -122,9 +112,7 @@ export default class SlotMachine extends Component {
           !threeApples
         ) {
           this.setState({
-            appleFirstRow2: true,
             checkable: false,
-            //coins: this.state.coins + 10,
           });
           newScore += 10;
         } else if (
@@ -134,9 +122,7 @@ export default class SlotMachine extends Component {
           this.state.reel1[i + 1] === 2
         ) {
           this.setState({
-            bananaFirstRow: true,
             checkable: false,
-            //coins: this.state.coins + 15,
           });
           threeBananase = true;
           newScore += 15;
@@ -147,9 +133,7 @@ export default class SlotMachine extends Component {
           !threeBananase
         ) {
           this.setState({
-            bananaFirstRow2: true,
             checkable: false,
-            //coins: this.state.coins + 5,
           });
           newScore += 5;
         } else if (
@@ -159,17 +143,209 @@ export default class SlotMachine extends Component {
           this.state.reel1[i + 1] === 3
         ) {
           this.setState({
-            lemonFirstRow: true,
             checkable: false,
-            //coins: this.state.coins + 3,
           });
           newScore += 3;
         }
       }
     }
-    this.setState({
-      coins: newScore,
-    });
+
+    return newScore;
+  }
+
+  //CHECKS FIRST ROW HORIZONTALLY
+  checkCombination2() {
+    let newScore = 0;
+    let threeCherries = false;
+    let threeApples = false;
+    let threeBananase = false;
+    let i;
+    if (this.state.checkable) {
+      for (i = 0; i < this.state.reel1.length; i++) {
+        if (
+          //!3 CHERRYS Second ROW
+          this.state.reel2[i - 1] === 0 &&
+          this.state.reel2[i] === 0 &&
+          this.state.reel2[i + 1] === 0
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          threeCherries = true;
+          newScore += 50;
+        } else if (
+          //!2 CHERRYS Second ROW
+          this.state.reel2[i - 1] === 0 &&
+          this.state.reel2[i] === 0 &&
+          !threeCherries
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          newScore += 40;
+        } else if (
+          //!3 APPLES Second ROW
+          this.state.reel2[i - 1] === 1 &&
+          this.state.reel2[i] === 1 &&
+          this.state.reel2[i + 1] === 1
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          threeApples = true;
+          newScore += 20;
+        } else if (
+          //!2 APPLES Second ROW
+          this.state.reel2[i - 1] === 1 &&
+          this.state.reel2[i] === 1 &&
+          !threeApples
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          newScore += 10;
+        } else if (
+          //!3 BANANAS Second ROW
+          this.state.reel2[i - 1] === 2 &&
+          this.state.reel2[i] === 2 &&
+          this.state.reel2[i + 1] === 2
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          threeBananase = true;
+          newScore += 15;
+        } else if (
+          //!2 BANANAS Second ROW
+          this.state.reel2[i - 1] === 2 &&
+          this.state.reel2[i] === 2 &&
+          !threeBananase
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          newScore += 5;
+        } else if (
+          //!3 LEMONS Second ROW
+          this.state.reel2[i - 1] === 3 &&
+          this.state.reel2[i] === 3 &&
+          this.state.reel2[i + 1] === 3
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          newScore += 3;
+        }
+      }
+    }
+
+    return newScore;
+  }
+
+  //CHECKS THIRD ROW HORIZONTALLY
+  checkCombination3() {
+    let newScore = 0;
+    let threeCherries = false;
+    let threeApples = false;
+    let threeBananase = false;
+    let i;
+    if (this.state.checkable) {
+      for (i = 0; i < this.state.reel1.length; i++) {
+        if (
+          //!3 CHERRYS Second ROW
+          this.state.reel3[i - 1] === 0 &&
+          this.state.reel3[i] === 0 &&
+          this.state.reel3[i + 1] === 0
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          threeCherries = true;
+          newScore += 50;
+        } else if (
+          //!2 CHERRYS Third ROW
+          this.state.reel3[i - 1] === 0 &&
+          this.state.reel3[i] === 0 &&
+          !threeCherries
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          newScore += 40;
+        } else if (
+          //!3 APPLES Third ROW
+          this.state.reel3[i - 1] === 1 &&
+          this.state.reel3[i] === 1 &&
+          this.state.reel3[i + 1] === 1
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          threeApples = true;
+          newScore += 20;
+        } else if (
+          //!2 APPLES Third ROW
+          this.state.reel3[i - 1] === 1 &&
+          this.state.reel3[i] === 1 &&
+          !threeApples
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          newScore += 10;
+        } else if (
+          //!3 BANANAS Third ROW
+          this.state.reel3[i - 1] === 2 &&
+          this.state.reel3[i] === 2 &&
+          this.state.reel3[i + 1] === 2
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          threeBananase = true;
+          newScore += 15;
+        } else if (
+          //!2 BANANAS Third ROW
+          this.state.reel3[i - 1] === 2 &&
+          this.state.reel3[i] === 2 &&
+          !threeBananase
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          newScore += 5;
+        } else if (
+          //!3 LEMONS Third ROW
+          this.state.reel3[i - 1] === 3 &&
+          this.state.reel3[i] === 3 &&
+          this.state.reel3[i + 1] === 3
+        ) {
+          this.setState({
+            checkable: false,
+          });
+          newScore += 3;
+        }
+      }
+    }
+
+    return newScore;
+  }
+
+  //CHECKS THE WHOLE RESLUT OF THE SPIN
+  checkResults() {
+    if (this.state.checkable) {
+      let resultFirstRow = this.checkCombination1();
+      let resultSecondRow = this.checkCombination2();
+      let resultThirdRow = this.checkCombination3();
+
+      this.setState({
+        coins:
+          this.state.coins + resultFirstRow + resultSecondRow + resultThirdRow,
+        result1: resultFirstRow,
+        result2: resultSecondRow,
+        result3: resultThirdRow,
+      });
+    }
   }
 
   //GETS RANDOM NUMBER FOR EACH SLOT IN THE REEL
@@ -211,7 +387,7 @@ export default class SlotMachine extends Component {
         slot23: Math.floor(Math.random() * 4),
         slot24: Math.floor(Math.random() * 4),
 
-        //HIDING SCORES
+        //HIDING SCORES FIRST ROW
         cherryFirstRow: false,
         appleFirstRow: false,
         bananaFirstRow: false,
@@ -220,6 +396,26 @@ export default class SlotMachine extends Component {
         appleFirstRow2: false,
         bananaFirstRow2: false,
         lemonFirstRow2: false,
+
+        //HIDING SCORES SECOND ROW
+        cherrySecondRow: false,
+        appleSecondRow: false,
+        bananaSecondRow: false,
+        lemonSecondRow: false,
+        cherrySecondRow2: false,
+        appleSecondRow2: false,
+        bananaSecondRow2: false,
+        lemonSecondRow2: false,
+
+        //HIDING SCORES THIRD ROW
+        cherryThirdRow: false,
+        appleThirdRow: false,
+        bananaThirdRow: false,
+        lemonThirdRow: false,
+        cherryThirdRow2: false,
+        appleThirdRow2: false,
+        bananaThirdRow2: false,
+        lemonThirdRow2: false,
       });
     }
 
@@ -268,219 +464,239 @@ export default class SlotMachine extends Component {
         <h1>Slot machine</h1>
         <p>coins: {this.state.coins}</p>
         <button onMouseDown={this.spinSlot} onMouseUp={this.insertNumbers}>
-          Spin
+          SPIN
         </button>
-        <button onClick={this.checkCombination1}>Check</button>
+        <button onClick={this.checkResults}>STOP</button>
 
-        <div style={{ width: "400px", margin: "auto", paddingTop: "40px" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-            }}
-          >
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot1]}
-                alt=""
-              />
+        {this.state.checkable && <p>Rolling...</p>}
+        {!this.state.checkable && (
+          <div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "450px",
+                margin: " auto",
+              }}
+            >
+              <div
+                style={{
+                  width: "400px",
+                  margin: "auto",
+                  paddingTop: "40px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot1]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot2]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot3]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot4]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot5]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot6]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot7]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot8]}
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                {/*!SECOND REEL! */}
+                <div
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot9]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot10]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot11]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot12]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot13]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot14]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot15]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot16]}
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                {/*!THRID REEL! */}
+                <div
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot17]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot18]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot19]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot20]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot21]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot22]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot23]}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "30px" }}
+                      src={this.state.images[this.state.slot24]}
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  margin: "auto",
+                  paddingTop: "40px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "end",
+                  justifyContent: "center",
+                }}
+              >
+                <div style={{ padding: "5px" }}>{this.state.result1}</div>
+                <div style={{ padding: "5px" }}>{this.state.result2}</div>
+                <div style={{ padding: "5px" }}>{this.state.result3}</div>
+              </div>
             </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot2]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot3]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot4]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot5]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot6]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot7]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot8]}
-                alt=""
-              />
+
+            <div style={{ paddingTop: "20px" }}>
+              Coins this round{" "}
+              {this.state.result1 + this.state.result2 + this.state.result3}{" "}
             </div>
           </div>
-
-          {/*!SECOND REEL! */}
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot9]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot10]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot11]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot12]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot13]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot14]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot15]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot16]}
-                alt=""
-              />
-            </div>
-          </div>
-
-          {/*!THRID REEL! */}
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot17]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot18]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot19]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot20]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot21]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot22]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot23]}
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                style={{ height: "30px" }}
-                src={this.state.images[this.state.slot24]}
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-        {/*First row */}
-        {this.state.cherryFirstRow && (
-          <div>You got 3 cherries on first row you get 50 coins</div>
-        )}
-        {this.state.appleFirstRow && (
-          <div>You got 3 apples on first row you get 20 coins</div>
-        )}
-        {this.state.bananaFirstRow && (
-          <div>You got 3 bananas on first row you get 15 coins</div>
-        )}
-        {this.state.lemonFirstRow && (
-          <div>You got 3 lemons on first row you get 3 coins</div>
-        )}
-        {this.state.cherryFirstRow2 && (
-          <div>You got 2 cherries on first row you get 40 coins</div>
-        )}
-        {this.state.appleFirstRow2 && (
-          <div>You got 2 apples on first row you get 10 coins</div>
-        )}
-        {this.state.bananaFirstRow2 && (
-          <div>You got 2 bananas on first row you get 5 coins</div>
-        )}
-        {this.state.lemonFirstRow2 && (
-          <div>You got 2 lemons on first row you get 3 coins</div>
         )}
       </div>
     );
