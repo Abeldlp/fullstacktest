@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Import components
 import Navbar from "./components/Navbar";
@@ -15,16 +15,18 @@ import SQL from "./components/SQL";
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/country/:name" component={CountryDetails} />
-        <Route path="/question1" component={Question1} />
-        <Route path="/question2" component={Question2} />
-        <Route path="/question3" component={Question3} />
-        <Route path="/question4" component={SlotMachine} />
-        <Route path="/sqlpart" component={SQL} />
-      </Switch>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/country/:name" component={CountryDetails} />
+          <Route path="/question1" component={Question1} />
+          <Route path="/question2" component={Question2} />
+          <Route path="/question3" component={Question3} />
+          <Route path="/question4" component={SlotMachine} />
+          <Route path="/sqlpart" component={SQL} />
+        </Switch>
+      </Router>
     </div>
   );
 }

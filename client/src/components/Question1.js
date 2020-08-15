@@ -104,7 +104,7 @@ export default class Question1 extends Component {
                 <strong>Capital:</strong> {this.state.countryName.capital}
               </p>
               <p>
-                <strong>Regio:</strong> {this.state.countryName.region}
+                <strong>Region:</strong> {this.state.countryName.region}
               </p>
               <p>
                 <strong>Population:</strong> {this.state.countryName.population}
