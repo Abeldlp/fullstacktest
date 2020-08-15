@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import search_button from "../images/icon-search.png";
 
@@ -90,6 +89,7 @@ export default class Question3 extends Component {
             src={search_button}
             style={styles.search_button}
             onClick={this.handleSubmit}
+            alt="button"
           />
         </form>
         <div className="countries-section" style={styles.main_section}>

@@ -86,6 +86,7 @@ export default class Question1 extends Component {
             src={search_button}
             style={styles.search_button}
             onClick={this.handleSubmit}
+            alt="button"
           />
         </form>
         {this.state.shown && (

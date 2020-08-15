@@ -351,7 +351,7 @@ export default class SlotMachine extends Component {
   //GETS RANDOM NUMBER FOR EACH SLOT IN THE REEL
   spinSlot() {
     //CHECK IF THERE ARE STILL COINS
-    let reel1 = [];
+    
     if (this.state.coins > 0) {
       this.setState({
         coins: this.state.coins - 1,
