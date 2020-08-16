@@ -85,7 +85,7 @@ class Question3 extends Component {
             alt="button"
           />
         </form>
-        <h2>{this.props.countryfiltered}</h2>
+
         <div className="countries-section" style={styles.main_section}>
           <div>
             <h2>All the countries</h2>
