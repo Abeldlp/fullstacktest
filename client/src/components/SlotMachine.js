@@ -442,10 +442,16 @@ export default class SlotMachine extends Component {
       <div>
         <h1>Slot machine</h1>
         <p>coins: {this.state.coins}</p>
-        <button onMouseDown={this.spinSlot} onMouseUp={this.insertNumbers}>
+        <button
+          onMouseDown={this.spinSlot}
+          onMouseUp={this.insertNumbers}
+          data-test="spin_button"
+        >
           SPIN
         </button>
-        <button onClick={this.checkResults}>STOP</button>
+        <button onClick={this.checkResults} data-test="stop_button">
+          STOP
+        </button>
 
         {this.state.checkable && <p>Rolling...</p>}
         {!this.state.checkable && (

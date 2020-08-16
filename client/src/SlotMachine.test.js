@@ -6,7 +6,15 @@ import SlotMachine from "./components/SlotMachine";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("SlotMachine", () => {
-  it("should render with no errors", () => {
+  it("should render Spin button", () => {
     const wrapper = shallow(<SlotMachine />);
+    const spinButton = wrapper.find(`[data-test="spin_button"]`);
+    expect(spinButton.length).toBe(1);
+  });
+
+  it("should render stop button", () => {
+    const wrapper = shallow(<SlotMachine />);
+    const stopButton = wrapper.find(`[data-test="stop_button"]`);
+    expect(stopButton).toBe(1);
   });
 });
