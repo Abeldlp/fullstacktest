@@ -77,7 +77,8 @@ export default class SlotMachine extends Component {
           //!3 CHERRYS FIRST ROW
           this.state.reel1[i - 1] === 0 &&
           this.state.reel1[i] === 0 &&
-          this.state.reel1[i + 1] === 0
+          this.state.reel1[i + 1] === 0 &&
+          !threeCherries
         ) {
           this.setState({
             checkable: false,
@@ -98,7 +99,8 @@ export default class SlotMachine extends Component {
           //!3 APPLES FIRST ROW
           this.state.reel1[i - 1] === 1 &&
           this.state.reel1[i] === 1 &&
-          this.state.reel1[i + 1] === 1
+          this.state.reel1[i + 1] === 1 &&
+          !threeApples
         ) {
           this.setState({
             checkable: false,
@@ -119,7 +121,8 @@ export default class SlotMachine extends Component {
           //!3 BANANAS FIRST ROW
           this.state.reel1[i - 1] === 2 &&
           this.state.reel1[i] === 2 &&
-          this.state.reel1[i + 1] === 2
+          this.state.reel1[i + 1] === 2 &&
+          !threeBananase
         ) {
           this.setState({
             checkable: false,
@@ -166,7 +169,8 @@ export default class SlotMachine extends Component {
           //!3 CHERRYS Second ROW
           this.state.reel2[i - 1] === 0 &&
           this.state.reel2[i] === 0 &&
-          this.state.reel2[i + 1] === 0
+          this.state.reel2[i + 1] === 0 &&
+          !threeCherries
         ) {
           this.setState({
             checkable: false,
@@ -187,7 +191,8 @@ export default class SlotMachine extends Component {
           //!3 APPLES Second ROW
           this.state.reel2[i - 1] === 1 &&
           this.state.reel2[i] === 1 &&
-          this.state.reel2[i + 1] === 1
+          this.state.reel2[i + 1] === 1 &&
+          !threeApples
         ) {
           this.setState({
             checkable: false,
@@ -208,7 +213,8 @@ export default class SlotMachine extends Component {
           //!3 BANANAS Second ROW
           this.state.reel2[i - 1] === 2 &&
           this.state.reel2[i] === 2 &&
-          this.state.reel2[i + 1] === 2
+          this.state.reel2[i + 1] === 2 &&
+          !threeBananase
         ) {
           this.setState({
             checkable: false,
@@ -255,7 +261,8 @@ export default class SlotMachine extends Component {
           //!3 CHERRYS Second ROW
           this.state.reel3[i - 1] === 0 &&
           this.state.reel3[i] === 0 &&
-          this.state.reel3[i + 1] === 0
+          this.state.reel3[i + 1] === 0 &&
+          !threeCherries
         ) {
           this.setState({
             checkable: false,
@@ -276,7 +283,8 @@ export default class SlotMachine extends Component {
           //!3 APPLES Third ROW
           this.state.reel3[i - 1] === 1 &&
           this.state.reel3[i] === 1 &&
-          this.state.reel3[i + 1] === 1
+          this.state.reel3[i + 1] === 1 &&
+          !threeApples
         ) {
           this.setState({
             checkable: false,
@@ -297,7 +305,8 @@ export default class SlotMachine extends Component {
           //!3 BANANAS Third ROW
           this.state.reel3[i - 1] === 2 &&
           this.state.reel3[i] === 2 &&
-          this.state.reel3[i + 1] === 2
+          this.state.reel3[i + 1] === 2 &&
+          !threeBananase
         ) {
           this.setState({
             checkable: false,
@@ -351,7 +360,7 @@ export default class SlotMachine extends Component {
   //GETS RANDOM NUMBER FOR EACH SLOT IN THE REEL
   spinSlot() {
     //CHECK IF THERE ARE STILL COINS
-    
+
     if (this.state.coins > 0) {
       this.setState({
         coins: this.state.coins - 1,

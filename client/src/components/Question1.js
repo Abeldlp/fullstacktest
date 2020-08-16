@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import search_button from "../images/icon-search.png";
+import { useSelector, useDispatch } from "react-redux";
+import { onInputChange } from "../actions/index";
 
 export default class Question1 extends Component {
   constructor(props) {

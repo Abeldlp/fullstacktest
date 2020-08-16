@@ -11,6 +11,7 @@ import Question3 from "./components/Question3";
 import SlotMachine from "./components/SlotMachine";
 import CountryDetails from "./components/Countrydetails";
 import SQL from "./components/SQL";
+import ReduxLearn from "./ReduxLearn";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/question3" component={Question3} />
           <Route path="/question4" component={SlotMachine} />
           <Route path="/sqlpart" component={SQL} />
+          <Route path="/learn-redux" component={ReduxLearn} />
         </Switch>
       </Router>
     </div>
