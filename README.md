@@ -18,28 +18,44 @@ Create a folder in your pc and name it as you want.
 
 ### `git clone https://github.com/Abeldlp/fullstacktest.git`
 
+once downloaded travel to the repository.
+
+### `cd fullstacktest`
+
 ### 3. Step Three
 
-Once the folders are downloaded, download the node modules for the dependencies.
+Install the dependencies for the backend.
+
+### `npm install`
+
+Install the dependencies for the frontend.
+
+### `cd client`
 
 ### `npm install`
 
 ### 4. Step Four
 
-Once everything is set-up run the server on the terminal.
+Once everything is set-up open a new terminal and got to the root folder.
+(This is with the terminal you just opened, the other one must remain in the client folder)
+
+### `cd fullstacktest`
 
 ### `nodemon server`
 
 **Note: The server runs on server `8000`, if you want to change it, go to server.js and change the PORT.**
 
-Open a new terminal and leave the server running.
-
 ### 5. Step Five
 
-On the new terminal, go to your project folder, access the client and run the frontend
-
-### `cd client`
+With the first terminal you had (currently in the client directory) start the frontend development server.
 
 ### `npm start`
 
 Your default browser should open and start running on port 3000
+
+Now locally you are using your port 3000 to serve the backend and the port 8000 to serve the backend.
+
+Additionally, if you want to run new test files.
+Create the files on the src folder.
+
+### `npm test`
