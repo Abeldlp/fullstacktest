@@ -441,11 +441,12 @@ export default class SlotMachine extends Component {
     return (
       <div>
         <h1>Slot machine</h1>
-        <p>coins: {this.state.coins}</p>
+        <p id="coins_holder">coins: {this.state.coins}</p>
         <button
           onMouseDown={this.spinSlot}
           onMouseUp={this.insertNumbers}
           data-test="spin_button"
+          id="spin_button"
         >
           SPIN
         </button>
