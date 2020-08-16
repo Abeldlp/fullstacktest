@@ -1,31 +1,25 @@
 import React, { Component } from "react";
 import search_button from "../images/icon-search.png";
+import { connect } from "react-redux";
 
-export default class Question1 extends Component {
+class Question1 extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      countryName: "",
       shown: false,
     };
 
-    this.handleCountryName = this.handleCountryName.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleCountryName(e) {
-    this.setState({
-      countryName: e.target.value,
-    });
   }
 
   async handleSubmit(e) {
     e.preventDefault();
 
     try {
+      //Fetching the data from the API using the input value from REDUX state
       const dataFetched = await fetch(
-        `http://localhost:8000/api/countries/${this.state.countryName}`
+        `http://localhost:8000/api/countries/${this.props.country}`
       );
 
       const dataJson = await dataFetched.json();
@@ -41,7 +35,7 @@ export default class Question1 extends Component {
       });
     }
 
-    console.log(this.state.countryName);
+    //console.log(this.props.country);
   }
 
   render() {
@@ -78,8 +72,8 @@ export default class Question1 extends Component {
         >
           <input
             type="text"
-            placeholder="Search for specific country "
-            onChange={this.handleCountryName}
+            placeholder="Search for specific country"
+            onChange={this.props.inputChanged}
             style={styles.input_bar}
           />
           <img
@@ -133,6 +127,24 @@ export default class Question1 extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    country: state.question1.inputValue,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    inputChanged: (e) => {
+      dispatch({ type: "INPUT_CHANGE", text: e.target.value });
+    },
+  };
+};
+
+//Connecting the component to the store
+export default connect(mapStateToProps, mapDispatchToProps)(Question1);
+
+//Simple styles
 const styles = {
   input_bar: {
     outline: "none",
