@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import search_button from "../images/icon-search.png";
+import { connect } from "react-redux";
 
-export default class Question3 extends Component {
+class Question3 extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       fetchedCountries: [],
-      countryName: "",
       filteredCountries: [],
     };
 
-    this.handleCountryName = this.handleCountryName.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -26,17 +25,11 @@ export default class Question3 extends Component {
     });
   }
 
-  handleCountryName(e) {
-    this.setState({
-      countryName: e.target.value,
-    });
-  }
-
   async handleSubmit(e) {
     e.preventDefault();
 
     const data = await fetch(
-      `https://restcountries.eu/rest/v2/name/${this.state.countryName}`
+      `https://restcountries.eu/rest/v2/name/${this.props.countryfiltered}`
     );
     const countries = await data.json();
     this.setState({
@@ -82,7 +75,7 @@ export default class Question3 extends Component {
           <input
             type="text"
             placeholder="Name of the country"
-            onChange={this.handleCountryName}
+            onChange={this.props.filterCountry}
             style={styles.input_bar}
           />
           <img
@@ -92,6 +85,7 @@ export default class Question3 extends Component {
             alt="button"
           />
         </form>
+        <h2>{this.props.countryfiltered}</h2>
         <div className="countries-section" style={styles.main_section}>
           <div>
             <h2>All the countries</h2>
@@ -118,6 +112,20 @@ export default class Question3 extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    countryfiltered: state.question3.inputValue,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    filterCountry: (e) =>
+      dispatch({ type: "COUNTRY_CHANGE", text: e.target.value }),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Question3);
 
 const styles = {
   main_section: {

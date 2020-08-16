@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import search_button from "../images/icon-search.png";
+import { connect } from "react-redux";
 
 export default class Question2 extends Component {
   constructor(props) {
@@ -125,10 +126,25 @@ export default class Question2 extends Component {
             </div>
           ))}
         </div>
+        <h2>{this.props.country}</h2>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    country: state.question2.inputValue,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    inputChanged: (e) => {
+      dispatch({ type: "CHANGE_VALUE", text: e.target.value.split(" ") });
+    },
+  };
+};
 
 const styles = {
   main_section: {
