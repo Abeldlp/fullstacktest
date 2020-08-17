@@ -41,7 +41,7 @@ export default class Question2 extends Component {
       countries: this.state.selectedCountries,
     };
     const sendbody = await axios.post(
-      "http://localhost:8000/api/countries/filteredcountries",
+      "/api/countries/filteredcountries",
       dataToSend
     );
 

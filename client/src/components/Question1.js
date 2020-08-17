@@ -18,9 +18,7 @@ class Question1 extends Component {
 
     try {
       //Fetching the data from the API using the input value from REDUX state
-      const dataFetched = await fetch(
-        `http://localhost:8000/api/countries/${this.props.country}`
-      );
+      const dataFetched = await fetch(`/api/countries/${this.props.country}`);
 
       const dataJson = await dataFetched.json();
 
