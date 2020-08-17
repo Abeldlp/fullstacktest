@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { motion } from "framer-motion";
+import SlotInstructions from "./SlotInstructions";
 
 //IMPORT IMAGES
 import image0 from "../images/image1.png";
@@ -54,6 +56,9 @@ export default class SlotMachine extends Component {
       result1: "",
       result2: "",
       result3: "",
+
+      //INSTRUCTIONS MENU
+      instructions: false,
     };
 
     this.spinSlot = this.spinSlot.bind(this);
@@ -442,17 +447,57 @@ export default class SlotMachine extends Component {
       <div>
         <h1>Slot machine</h1>
         <p id="coins_holder">coins: {this.state.coins}</p>
-        <button
+        {this.state.instructions && <SlotInstructions />}
+        <p
+          style={{
+            color: "dodgerblue",
+            cursor: "pointer",
+            width: "120px",
+            padding: "10px",
+            margin: "5px auto",
+          }}
+          onMouseEnter={() => this.setState({ instructions: true })}
+          onMouseLeave={() => this.setState({ instructions: false })}
+        >
+          Combinations
+        </p>
+
+        <motion.button
           onMouseDown={this.spinSlot}
           onMouseUp={this.insertNumbers}
+          style={{
+            backgroundColor: "#FF6464",
+            color: "white",
+            padding: "15px",
+            border: "none",
+            outline: "none",
+            borderRadius: "15px",
+            marginRight: "30px",
+            cursor: "pointer",
+          }}
+          whileTap={{ scale: 0.9 }}
           data-test="spin_button"
           id="spin_button"
         >
           SPIN
-        </button>
-        <button onClick={this.checkResults} data-test="stop_button">
+        </motion.button>
+        <motion.button
+          onClick={this.checkResults}
+          data-test="stop_button"
+          style={{
+            backgroundColor: "white",
+            color: "#FF6464",
+            padding: "15px",
+            border: "1.5px solid #FF6464",
+            outline: "none",
+            borderRadius: "15px",
+            marginLeft: "30px",
+            cursor: "pointer",
+          }}
+          whileTap={{ scale: 0.9 }}
+        >
           STOP
-        </button>
+        </motion.button>
 
         {this.state.checkable && <p>Rolling...</p>}
         {!this.state.checkable && (
@@ -479,186 +524,282 @@ export default class SlotMachine extends Component {
                     justifyContent: "space-around",
                   }}
                 >
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot1]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot2]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot3]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot4]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot5]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot6]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot7]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot8]}
                       alt=""
                     />
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/*!SECOND REEL! */}
                 <div
                   style={{ display: "flex", justifyContent: "space-around" }}
                 >
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot9]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot10]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot11]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot12]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot13]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot14]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot15]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot16]}
                       alt=""
                     />
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/*!THRID REEL! */}
                 <div
                   style={{ display: "flex", justifyContent: "space-around" }}
                 >
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot17]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot18]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot19]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot20]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot21]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot22]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot23]}
                       alt=""
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                  >
                     <img
                       style={{ height: "30px" }}
                       src={this.state.images[this.state.slot24]}
                       alt=""
                     />
-                  </div>
+                  </motion.div>
                 </div>
               </div>
 
@@ -672,9 +813,30 @@ export default class SlotMachine extends Component {
                   justifyContent: "center",
                 }}
               >
-                <div style={{ padding: "5px" }}>{this.state.result1}</div>
-                <div style={{ padding: "5px" }}>{this.state.result2}</div>
-                <div style={{ padding: "5px" }}>{this.state.result3}</div>
+                <motion.div
+                  style={{ padding: "5px" }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.9 }}
+                >
+                  {this.state.result1}
+                </motion.div>
+                <motion.div
+                  style={{ padding: "5px" }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1 }}
+                >
+                  {this.state.result2}
+                </motion.div>
+                <motion.div
+                  style={{ padding: "5px" }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.1 }}
+                >
+                  {this.state.result3}
+                </motion.div>
               </div>
             </div>
 

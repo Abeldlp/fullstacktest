@@ -8,7 +8,11 @@ export default function Home() {
         Below you can find the questions asked on this test. Each question has a
         link in the navbar.
       </p>
-      <p>Read each question and to the correspondat page to see the answer.</p>
+      <p>
+        {" "}
+        This question page was not needed for the project, but added it for
+        reference when checking the questions{" "}
+      </p>
       <h2 style={{ textAlign: "center" }}>Questions</h2>
       <hr />
       <h3>Question 1</h3>
