@@ -11,7 +11,7 @@ export default class Countrydetails extends Component {
   }
 
   async componentDidMount() {
-    const data = await fetch(`api/countries/${this.props.match.params.name}`);
+    const data = await fetch(`/api/countries/${this.props.match.params.name}`);
     const datajson = await data.json();
 
     this.setState({
